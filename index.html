@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sania Digital Library | Digital Ebooks for Everyday Life</title>
+<meta name="description" content="Sania Digital Library offers thoughtfully created digital ebooks covering lifestyle, personal growth, creativity, practical guides, inspiration, and everyday interests.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#eef0e4;
+  --paper-deep:#e4e7d7;
+  --ink:#22301f;
+  --ink-soft:#4d5b46;
+  --muted:#6b7563;
+  --line:#d6dac4;
+  --card:#f8f8f1;
+  --gold:#a97a2f;
+  --gold-deep:#8a621f;
+  --plum:#6a4560;
+  --spine-1:#7c8b5e;
+  --spine-2:#a97a2f;
+  --spine-3:#6a4560;
+  --spine-4:#4f6f6a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Inter',Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.65;
+  background-image:radial-gradient(circle at 1px 1px, rgba(34,48,31,.06) 1px, transparent 0);
+  background-size:22px 22px;
+}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;color:var(--ink);letter-spacing:-.01em}
+a{color:inherit}
+
+header{background:rgba(238,240,228,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+nav{max-width:1160px;margin:auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-size:21px;font-weight:700;letter-spacing:.2px;color:var(--ink)}
+.logo svg{flex-shrink:0}
+.navlinks a{text-decoration:none;margin-left:22px;font-size:14px;font-weight:500;color:var(--ink-soft);transition:color .15s}
+.navlinks a:hover{color:var(--gold-deep)}
+
+.hero{position:relative;padding:100px 24px 70px;overflow:hidden}
+.hero-inner{max-width:760px;margin:auto;text-align:center;position:relative;z-index:2}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:2px;color:var(--gold-deep);font-weight:500;background:rgba(169,122,47,.1);padding:6px 14px;border-radius:20px}
+h1{font-size:56px;line-height:1.08;margin:22px 0 18px;font-weight:600}
+h1 em{font-style:italic;color:var(--gold-deep);font-weight:500}
+.hero p{font-size:18px;color:var(--ink-soft);max-width:560px;margin:0 auto 32px}
+.hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--paper);padding:14px 26px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;border:1px solid var(--ink);transition:transform .15s, box-shadow .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(34,48,31,.22)}
+.btn.secondary{background:transparent;color:var(--ink);border:1px solid var(--ink-soft)}
+.btn.secondary:hover{background:var(--card)}
+.btn.small{padding:9px 16px;font-size:13px;border-radius:6px}
+
+.book-illustration{max-width:340px;margin:44px auto 0;position:relative;z-index:2}
+
+.trust-strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper-deep)}
+.trust-inner{max-width:1160px;margin:auto;padding:18px 24px;display:flex;flex-wrap:wrap;gap:24px;justify-content:center}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-soft);font-weight:500}
+.trust-item svg{flex-shrink:0;color:var(--gold-deep)}
+
+section{max-width:1160px;margin:auto;padding:80px 24px}
+.section-title{text-align:center;max-width:640px;margin:0 auto 44px}
+.section-title .eyebrow{margin-bottom:14px}
+.section-title h2{font-size:36px;margin:0 0 12px;font-weight:600}
+.section-title p{color:var(--muted);margin:0;font-size:16px}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:26px}
+
+.book{background:var(--card);border:1px solid var(--line);border-radius:6px;position:relative;overflow:hidden;box-shadow:0 1px 0 rgba(34,48,31,.04), 0 14px 30px -18px rgba(34,48,31,.35);transition:transform .2s, box-shadow .2s}
+.book:hover{transform:translateY(-5px);box-shadow:0 18px 34px -16px rgba(34,48,31,.4)}
+.book::before{content:"";position:absolute;left:0;top:0;bottom:0;width:9px}
+.book:nth-child(4n+1)::before{background:var(--spine-1)}
+.book:nth-child(4n+2)::before{background:var(--spine-2)}
+.book:nth-child(4n+3)::before{background:var(--spine-3)}
+.book:nth-child(4n)::before{background:var(--spine-4)}
+.book::after{content:"";position:absolute;right:0;top:8px;bottom:8px;width:6px;background:repeating-linear-gradient(180deg, rgba(34,48,31,.08) 0px, rgba(34,48,31,.08) 1px, transparent 1px, transparent 3px)}
+.book-inner{padding:28px 26px 26px 30px}
+.tag{display:inline-block;background:transparent;color:var(--gold-deep);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:1px;padding:0}
+.book h3{margin:12px 0 10px;font-size:20px;line-height:1.3;font-weight:600}
+.book p{color:var(--muted);font-size:14.5px;margin:0}
+.book-footer{display:flex;align-items:center;justify-content:space-between;margin-top:20px;padding-top:16px;border-top:1px dashed var(--line)}
+.price{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:17px;color:var(--ink)}
+.note{font-size:13px;color:var(--muted)}
+.format-note{text-align:center;margin-top:34px;color:var(--muted);font-size:14px}
+
+.alt{background:var(--paper-deep);max-width:none;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.alt-inner{max-width:1160px;margin:auto;padding:0 24px}
+.about-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.about-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:28px}
+.about-card .num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold-deep);letter-spacing:1px}
+.about-card h3{margin:10px 0 8px;font-size:19px}
+.about-card p{color:var(--muted);margin:0;font-size:14.5px}
+
+.reviews{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+.review{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:26px}
+.review .stars{color:var(--gold-deep);letter-spacing:2px;font-size:14px;margin-bottom:12px}
+.review p{color:var(--ink-soft);font-size:14.5px;margin:0 0 16px;font-style:italic}
+.review .who{font-size:13px;color:var(--muted);font-weight:600;font-style:normal}
+
+.faq{max-width:760px;margin:auto}
+.faq-item{border-bottom:1px solid var(--line);padding:6px 0}
+.faq-item summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;padding:16px 4px;font-weight:600;font-size:15.5px}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"+";font-family:'JetBrains Mono',monospace;font-size:20px;color:var(--gold-deep);transition:transform .2s}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-item p{color:var(--muted);margin:0 4px 18px;font-size:14.5px;max-width:640px}
+
+.contact-box{max-width:640px;margin:auto;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:44px 32px}
+.contact-box .icon{width:46px;height:46px;border-radius:50%;background:rgba(169,122,47,.12);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:var(--gold-deep)}
+.email{font-weight:700;color:var(--gold-deep);font-size:17px;text-decoration:none}
+
+.policy{max-width:900px}
+.policy .section-title{text-align:left;margin-left:0}
+.policy .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:32px 34px}
+.policy h3{margin-top:26px;font-size:17px}
+.policy h3:first-child{margin-top:0}
+.policy p,.policy li{color:var(--muted);font-size:14.5px}
+.policy li{margin-bottom:4px}
+
+footer{background:var(--ink);color:#e9ebe0;padding:48px 20px 30px}
+.footer-inner{max-width:1160px;margin:auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:30px;padding-bottom:28px;border-bottom:1px solid rgba(233,235,224,.15)}
+.footer-brand{font-family:'Fraunces',serif;font-size:20px;font-weight:600;margin-bottom:8px}
+.footer-brand + p{color:#b9bfaf;font-size:14px;max-width:280px;margin:0}
+.footer-links a{display:block;color:#e9ebe0;text-decoration:none;margin-bottom:9px;font-size:14px;opacity:.85}
+.footer-links a:hover{opacity:1;color:var(--gold)}
+.footer-col h4{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#9aa38c;margin:0 0 14px}
+.footer-bottom{max-width:1160px;margin:22px auto 0;text-align:center;font-size:13px;color:#9aa38c}
+
+@media(max-width:700px){
+  nav{flex-direction:column;align-items:center;gap:10px}
+  .navlinks a{margin:0 9px}
+  h1{font-size:36px}
+  .hero{padding-top:56px}
+  section{padding:56px 20px}
+  .policy .section-title{text-align:center}
+}
+</style>
+</head>
+<body>
+<header>
+<nav>
+<div class="logo">
+<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 4.5C4 3.67 4.67 3 5.5 3H12V21H5.5C4.67 21 4 20.33 4 19.5V4.5Z" fill="#a97a2f"/><path d="M20 4.5C20 3.67 19.33 3 18.5 3H12V21H18.5C19.33 21 20 20.33 20 19.5V4.5Z" fill="#7c8b5e"/></svg>
+Sania Digital Library
+</div>
+<div class="navlinks">
+<a href="#home">Home</a><a href="#ebooks">Ebooks</a><a href="#about">About</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a><a href="#policies">Policies</a>
+</div>
+</nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+<div class="hero-inner">
+<span class="eyebrow">Quiet, Honest Reading — Delivered Instantly</span>
+<h1>Small reads for the moments life doesn't come with <em>instructions</em> for.</h1>
+<p>Honest, reflective digital ebooks about grief, loneliness, self-worth, and letting go of perfect. Real feelings, real prompts, no fluff. Download in minutes, read on any device.</p>
+<div class="hero-actions">
+<a class="btn" href="#ebooks">Explore the Collection</a>
+<a class="btn secondary" href="#about">Our Story</a>
+</div>
+</div>
+<svg class="book-illustration" viewBox="0 0 320 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<path d="M20 30 C60 18 110 18 155 32 L155 128 C110 114 60 114 20 126 Z" fill="#f8f8f1" stroke="#d6dac4"/>
+<path d="M300 30 C260 18 210 18 165 32 L165 128 C210 114 260 114 300 126 Z" fill="#f8f8f1" stroke="#d6dac4"/>
+<path d="M155 32 C160 30 160 30 165 32 L165 128 C160 130 160 130 155 128 Z" fill="#e4e7d7"/>
+<path d="M34 40 L140 27M34 54 L140 41M34 68 L128 55" stroke="#c9cdb6" stroke-width="2" stroke-linecap="round"/>
+<path d="M286 40 L180 27M286 54 L180 41M286 68 L192 55" stroke="#c9cdb6" stroke-width="2" stroke-linecap="round"/>
+<circle cx="160" cy="18" r="4" fill="#a97a2f"/>
+</svg>
+</section>
+
+<div class="trust-strip">
+<div class="trust-inner">
+<div class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg>Secure checkout</div>
+<div class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>Instant digital download</div>
+<div class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l9 6 9-6M4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1z"/></svg>Real human support</div>
+<div class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20M4 19.5A2.5 2.5 0 006.5 22H20V2H6.5A2.5 2.5 0 004 4.5v15z"/></svg>PDF, works on any device</div>
+</div>
+</div>
+
+<section id="ebooks">
+<div class="section-title">
+<span class="eyebrow">The Collection</span>
+<h2>Honest Reads for Real Feelings</h2>
+<p>Quiet, reflective ebooks about the things people don't always say out loud — loneliness, grief, self-worth, and letting go of perfect.</p>
+</div>
+<div class="cards">
+<div class="book">
+<div class="book-inner">
+<span class="tag">Fiction</span>
+<h3>Isolated: A Story of Isolation</h3>
+<p>A story of leaving everything familiar behind, and the quiet loneliness of building a life somewhere that doesn't yet feel like home.</p>
+<div class="book-footer">
+<span class="price">Rs. 1,400</span>
+<!-- Replace the href below with this product's real Lemon Squeezy checkout link -->
+<a class="btn small lemonsqueezy-button" href="https://saniadigitallibrary.lemonsqueezy.com/checkout/buy/3fe8a2fb-fa18-455f-b6bb-b1c76f3b03c8">Buy Now</a>
+</div>
+<p class="note" style="margin-top:10px">Digital ebook · PDF · 14 pages</p>
+</div>
+</div>
+<div class="book">
+<div class="book-inner">
+<span class="tag">Workbook</span>
+<h3>Isolated: A Reflection Journal</h3>
+<p>A companion workbook with six guided sections and honest writing prompts, for reflecting on your own experience of distance and loneliness.</p>
+<div class="book-footer">
+<span class="price">Rs. 1,940</span>
+<!-- Replace the href below with this product's real Lemon Squeezy checkout link -->
+<a class="btn small lemonsqueezy-button" href="https://saniadigitallibrary.lemonsqueezy.com/checkout/buy/496041c3-36ae-417d-86b6-640041621c09">Buy Now</a>
+</div>
+<p class="note" style="margin-top:10px">Digital workbook · PDF · 15 pages</p>
+</div>
+</div>
+<div class="book">
+<div class="book-inner">
+<span class="tag">Bundle · Save Rs. 690</span>
+<h3>Isolated + Reflection Journal Bundle</h3>
+<p>Read the story, then move through the journal that mirrors it. A moment of feeling understood, followed by a moment of understanding yourself.</p>
+<div class="book-footer">
+<span class="price">Rs. 2,650</span>
+<!-- Replace the href below with this product's real Lemon Squeezy checkout link -->
+<a class="btn small lemonsqueezy-button" href="https://saniadigitallibrary.lemonsqueezy.com/checkout/buy/6f53786e-1cfb-44b5-a408-9447058b65f0">Buy Now</a>
+</div>
+<p class="note" style="margin-top:10px">2 digital files · PDF · 29 pages total</p>
+</div>
+</div>
+<div class="book">
+<div class="book-inner">
+<span class="tag">Reflection</span>
+<h3>The Last Text</h3>
+<p>What if your last message was the last one they ever read? A raw, intimate reflection on sudden loss, grief, and words left unsaid.</p>
+<div class="book-footer">
+<span class="price">Rs. 830</span>
+<!-- Replace the href below with this product's real Lemon Squeezy checkout link -->
+<a class="btn small lemonsqueezy-button" href="https://saniadigitallibrary.lemonsqueezy.com/checkout/buy/8611f955-f575-47a2-b36b-6b921df6ba3f">Buy Now</a>
+</div>
+<p class="note" style="margin-top:10px">Digital ebook · PDF · 2 pages</p>
+</div>
+</div>
+<div class="book">
+<div class="book-inner">
+<span class="tag">Reflection</span>
+<h3>Enough</h3>
+<p>A story about body image and self-worth, and the quiet, ongoing work of learning to come home to yourself, exactly as you are.</p>
+<div class="book-footer">
+<span class="price">Rs. 830</span>
+<!-- Replace the href below with this product's real Lemon Squeezy checkout link -->
+<a class="btn small lemonsqueezy-button" href="https://saniadigitallibrary.lemonsqueezy.com/checkout/buy/0bc16c75-faa2-40fe-b5e0-778483f16881">Buy Now</a>
+</div>
+<p class="note" style="margin-top:10px">Digital ebook · PDF · 2 pages</p>
+</div>
+</div>
+<div class="book">
+<div class="book-inner">
+<span class="tag">Personal Growth</span>
+<h3>A Little Better Every Day</h3>
+<p>A practical guide to letting go of perfectionism through small, honest, everyday shifts — real mindset changes, doable actions, and gentle reflection prompts.</p>
+<div class="book-footer">
+<span class="price">Rs. 1,400</span>
+<a class="btn small lemonsqueezy-button" href="https://saniadigitallibrary.lemonsqueezy.com/checkout/buy/7967a12a-922a-4617-8da5-a997a2805e30">Buy Now</a>
+</div>
+<p class="note" style="margin-top:10px">Digital ebook · PDF · 10 pages</p>
+</div>
+</div>
+</div>
+<p class="format-note">All products are digital products delivered by download. No physical items are shipped.</p>
+</section>
+
+<section id="more-ebooks">
+<div class="section-title">
+<span class="eyebrow">Also From Sania Digital Library</span>
+<h2>A Few Practical Guides, Too</h2>
+<p>Outside the reflective collection, a small set of practical reads on money, habits, and microbiology basics.</p>
+</div>
+<div class="cards">
+<div class="book">
+<div class="book-inner">
+<span class="tag">Personal Finance</span>
+<h3>Financial Literacy for Young Women</h3>
+<p>A practical, jargon-free guide to saving, retirement, and building wealth from zero — the guide nobody handed us, with no shame attached.</p>
+<div class="book-footer">
+<span class="price">Rs. 2,495</span>
+<!-- Replace the href below with this product's real Lemon Squeezy checkout link -->
+<a class="btn small lemonsqueezy-button" href="https://saniadigitallibrary.lemonsqueezy.com/checkout/buy/9cbe27b0-ba8c-49ae-a2e5-766976f82642">Buy Now</a>
+</div>
+<p class="note" style="margin-top:10px">Digital ebook · PDF</p>
+</div>
+</div>
+<div class="book">
+<div class="book-inner">
+<span class="tag">Education</span>
+<h3>Microbiology Made Simple</h3>
+<p>A clear, approachable introduction to core microbiology concepts, broken down for students and curious readers who want the subject explained simply, not dumbed down.</p>
+<div class="book-footer">
+<span class="price">Rs. 1,940</span>
+<a class="btn small lemonsqueezy-button" href="https://saniadigitallibrary.lemonsqueezy.com/checkout/buy/86760185-67a8-4e0f-834f-7909e4231ef6">Buy Now</a>
+</div>
+<p class="note" style="margin-top:10px">Digital ebook · PDF</p>
+</div>
+</div>
+<div class="book">
+<div class="book-inner">
+<span class="tag">Lifestyle</span>
+<h3>Everyday Living</h3>
+<p>Small, sustainable habits for a calmer, more intentional daily life — practical ideas you can start today, without overhauling everything at once.</p>
+<div class="book-footer">
+<span class="price">Rs. 1,400</span>
+<a class="btn small lemonsqueezy-button" href="https://saniadigitallibrary.lemonsqueezy.com/checkout/buy/7ff7136c-3b7c-4001-8860-39ede4780478">Buy Now</a>
+</div>
+<p class="note" style="margin-top:10px">Digital ebook · PDF</p>
+</div>
+</div>
+</div>
+</section>
+
+<div class="alt">
+<section id="about" class="alt-inner">
+<div class="section-title">
+<span class="eyebrow">Who We Are</span>
+<h2>About Sania Digital Library</h2>
+<p>An independent digital ebook store created for readers with varied interests.</p>
+</div>
+<div class="about-cards">
+<div class="about-card">
+<span class="num">Purpose</span>
+<h3>Our Purpose</h3>
+<p>We create and offer accessible digital reading materials covering lifestyle, personal development, creativity, inspiration, practical ideas, and other general-interest topics.</p>
+</div>
+<div class="about-card">
+<span class="num">Approach</span>
+<h3>Our Approach</h3>
+<p>Our ebooks are designed to be convenient digital resources that readers can enjoy at their own pace, wherever they choose to read.</p>
+</div>
+<div class="about-card">
+<span class="num">Collection</span>
+<h3>Our Collection</h3>
+<p>We are continually developing our collection, with new titles planned across a variety of everyday interests and subjects.</p>
+</div>
+</div>
+</section>
+</div>
+
+<section id="reviews">
+<div class="section-title">
+<span class="eyebrow">Reader Notes</span>
+<h2>What Readers Say</h2>
+<p>A few notes from people who've spent time with our ebooks.</p>
+</div>
+<div class="reviews">
+<div class="review">
+<div class="stars">★★★★★</div>
+<p>"Everyday Living" gave me small habits I actually kept. Nothing overwhelming, just useful ideas I could start the same day.</p>
+<div class="who">— Reader, Also From Sania Digital Library</div>
+</div>
+<div class="review">
+<div class="stars">★★★★★</div>
+<p>Short chapters that respect your time. I read "A Little Better Every Day" over a few mornings with coffee and it stuck with me.</p>
+<div class="who">— Reader, Reflective Collection</div>
+</div>
+</div>
+</section>
+
+<section id="faq">
+<div class="section-title">
+<span class="eyebrow">Good to Know</span>
+<h2>Frequently Asked Questions</h2>
+</div>
+<div class="faq">
+<details class="faq-item" open>
+<summary>How do I receive my ebook after buying?</summary>
+<p>Every product is delivered electronically as a downloadable PDF. Once your purchase is complete, you'll be able to download the file right away.</p>
+</details>
+<details class="faq-item">
+<summary>What devices can I read on?</summary>
+<p>Our ebooks are delivered as PDF files, which open on phones, tablets, e-readers, and computers using any standard PDF reader.</p>
+</details>
+<details class="faq-item">
+<summary>Can I get a refund?</summary>
+<p>Because our products are digital and delivered instantly, refunds are generally not available once a file has been delivered. If your file is corrupted or doesn't match its description, contact us and we'll make it right — see our full Refund Policy below.</p>
+</details>
+<details class="faq-item">
+<summary>I bought the same ebook twice by accident. What now?</summary>
+<p>Email us with your order details and we'll review and resolve it — see the Duplicate Purchases section of our policy below.</p>
+</details>
+</div>
+</section>
+
+<section id="contact">
+<div class="section-title">
+<span class="eyebrow">Get in Touch</span>
+<h2>Contact Us</h2>
+<p>Questions about an ebook, purchase, or digital delivery? We'd be happy to hear from you.</p>
+</div>
+<div class="contact-box">
+<div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1z"/><path d="M3 8l9 6 9-6"/></svg></div>
+<p><strong>Email us directly</strong></p>
+<a class="email" href="mailto:saniamunir165@gmail.com">saniamunir165@gmail.com</a>
+<p class="note" style="margin-top:14px">For order support, please include your order information and a short description of your question or issue. We typically reply within 1–2 business days.</p>
+</div>
+</section>
+
+<section id="policies" class="policy">
+<div class="section-title"><h2>Refund Policy</h2><p>Clear information for digital purchases.</p></div>
+<div class="card">
+<h3>Digital Products</h3>
+<p>Our products are digital ebooks delivered electronically. Please review the product description before purchasing. Because digital products cannot be physically returned, refunds may generally not be available after a digital product has been delivered or made available.</p>
+<h3>File Problems</h3>
+<p>If you receive a file that is corrupted, incomplete, or materially different from its product description, please contact us at <strong>saniamunir165@gmail.com</strong>. We will review the issue and, where appropriate, provide a corrected file or another suitable solution.</p>
+<h3>Duplicate Purchases</h3>
+<p>If you accidentally purchase the same ebook more than once, contact us with the relevant order information so we can review the situation.</p>
+<h3>Contact</h3>
+<p>Email: <strong>saniamunir165@gmail.com</strong></p>
+</div>
+
+<div class="section-title" style="margin-top:65px"><h2>Privacy Policy</h2><p>Last updated: August 21, 2026</p></div>
+<div class="card">
+<h3>Information We May Collect</h3>
+<p>When you purchase a product or contact us, information may be processed as necessary to provide our services. This may include your name, email address, order or transaction information, and information you provide to customer support.</p>
+<h3>How We Use Information</h3>
+<ul>
+<li>Process and manage purchases.</li>
+<li>Provide access to purchased digital products.</li>
+<li>Respond to customer questions and support requests.</li>
+<li>Maintain and improve our website and services.</li>
+<li>Comply with applicable legal and regulatory requirements.</li>
+</ul>
+<h3>Payment Information</h3>
+<p>Payments may be processed by third-party payment providers. We do not need to directly store complete payment-card details when payment processing is handled by the payment provider.</p>
+<h3>Third-Party Services</h3>
+<p>Our website may use third-party services for payment processing, digital product delivery, website hosting, or other necessary business functions. Those providers may process information according to their own policies.</p>
+<h3>Data Security</h3>
+<p>We take reasonable steps to protect information handled through our business. However, no online transmission or storage system can be guaranteed to be completely secure.</p>
+<h3>Changes to This Policy</h3>
+<p>This Privacy Policy may be updated when our business practices or legal requirements change. The updated version will be posted on this page with a revised date.</p>
+<h3>Contact</h3>
+<p>For privacy questions, contact <strong>saniamunir165@gmail.com</strong>.</p>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="footer-inner">
+<div>
+<div class="footer-brand">Sania Digital Library</div>
+<p>Digital ebooks for everyday life, ideas, inspiration, and more.</p>
+</div>
+<div class="footer-col">
+<h4>Browse</h4>
+<div class="footer-links">
+<a href="#home">Home</a>
+<a href="#ebooks">Ebooks</a>
+<a href="#about">About</a>
+<a href="#reviews">Reviews</a>
+</div>
+</div>
+<div class="footer-col">
+<h4>Support</h4>
+<div class="footer-links">
+<a href="#contact">Contact</a>
+<a href="#faq">FAQ</a>
+<a href="#policies">Refund Policy</a>
+<a href="#policies">Privacy Policy</a>
+</div>
+</div>
+</div>
+<p class="footer-bottom">© 2026 Sania Digital Library. All rights reserved.</p>
+</footer>
+
+<!-- Lemon Squeezy checkout overlay: powers the .lemonsqueezy-button links above -->
+<script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
+</body>
+</html>
